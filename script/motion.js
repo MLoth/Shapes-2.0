@@ -27,7 +27,8 @@ function drawStart() {
 
 	radius *= 1.15;
 
-    if (radius >= width/1.5) {
+	var screenDiagonal = (width * width) + (height * height);
+    if ((radius * radius) >= screenDiagonal) {
     	clearInterval(tmr);
 
     	tmr = setInterval(function() { shrinkBack() }, 20);
@@ -40,7 +41,7 @@ function shrinkBack() {
 	// add positions to array for redrawing
 	lines.push(radius);
 
-	drawOutline(radius, "#9A0DFF", 1);
+	drawOutlineCircle(radius, "#9A0DFF", 1);
 
 	radius /= 1.30;
 
@@ -51,7 +52,7 @@ function shrinkBack() {
 }
 
 // Draw a circle with only a outer line.
-function drawOutline(r, c, w) {
+function drawOutlineCircle(r, c, w) {
 	ctx.beginPath();
 	ctx.arc(width/2,height/2,r,0,2*Math.PI);
 	ctx.lineWidth = w;
@@ -61,14 +62,18 @@ function drawOutline(r, c, w) {
 
 function highlight() {
 	// make ovals, not yet ok
-	ctx.translate(width / 2, height / 2);
-	ctx.scale(2, 1);
-	ctx.restore;
+	// ctx.translate(width / 2, height / 2);
+	// ctx.scale(2, 1);
+	// ctx.restore;
 
 	for (var i = 0, j = lines.length; i <= j; i++) {
-		drawOutline(lines[i], "#E80CB2", 3);
+		if (i != lines[i]) {
+			drawOutlineCircle(lines[i], "#E80CB2", 3);
+		};
 	};
+	clearTimeout(tmr);
 
+	// if (true) {};
 	// for (var i = lines.length - 1; i >= 0; i--) {
 	// 	drawOutline(lines[i], "#FFFFFF", 1);
 	// };
