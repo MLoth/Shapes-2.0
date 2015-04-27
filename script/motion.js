@@ -5,7 +5,7 @@ var radius = 1, ctx, width = window.innerWidth, height = window.innerHeight, lin
 function init() {
 	ctx = setCanvas(document.getElementById("drawing_board"));
 	drawSomething(ctx);
-	console.log('so far so good');
+	console.log('So far so good.');
 }
 
 function setCanvas(c) {
@@ -54,26 +54,25 @@ function shrinkBack() {
 // Draw a circle with only a outer line.
 function drawOutlineCircle(r, c, w) {
 	ctx.beginPath();
-	ctx.arc(width/2,height/2,r,0,2*Math.PI);
+	ctx.arc( width / 2, height / 2, r, 0, 2 * Math.PI);
 	ctx.lineWidth = w;
     ctx.strokeStyle = c;
 	ctx.stroke();
 }
 
 function highlight() {
-	// make ovals, not yet ok
+	// make ovals, not ok yet
 	// ctx.translate(width / 2, height / 2);
 	// ctx.scale(2, 1);
 	// ctx.restore;
 
-	for (var i = 0, j = lines.length; i <= j; i++) {
-		if (i != lines[i]) {
-			drawOutlineCircle(lines[i], "#E80CB2", 3);
-		};
-	};
-	clearTimeout(tmr);
+	// for (var i = 0, j = lines.length; i <= j; i++) {
+	// 	if (i != lines[i]) {
+	// 		drawOutlineCircle(lines[i], "#E80CB2", 3);
+	// 	};
+	// };
+	// clearTimeout(tmr);
 
-	// if (true) {};
 	// for (var i = lines.length - 1; i >= 0; i--) {
 	// 	drawOutline(lines[i], "#FFFFFF", 1);
 	// };
