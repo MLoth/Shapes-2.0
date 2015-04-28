@@ -68,22 +68,55 @@ function drawTriangles() {
 	var i, j;
 	for (i = 0; i <= width - a; i += a) {
 		for (j = 0; j <= height - b; j += b) {
-			triangles.push(new triangle( i, j, i + a, j + b, i + a, j, colors[Math.floor(Math.random() * 4)]));
-			console.log(triangles);
+			var t = new triangle( i, j, i + a, j + b, i + a, j, colors[Math.floor(Math.random() * 5)]);
+			triangles.push(t);
+			t.drawTriangle();
 		};
 	};
+	triangles[2].fallDown();
+	triangles[3].fallDown();
+	triangles[4].fallDown();
+	triangles[5].fallDown();
 }
 
 function triangle(x1, y1, x2, y2, x3, y3, color) {
-	ctx.fillStyle = color;
-	ctx.beginPath();
+	// Properties
+	// var X1, X2, X3, Y1, Y2, Y3, Color;
+	this.X1 = x1;
+	this.Y1 = y1;
+	this.X2 = x2;
+	this.Y2 = y2;
+	this.X3 = x3;
+	this.Y3 = y3;
+	this.Color = color;
 
-	ctx.moveTo(x1, y1);
-	ctx.lineTo(x2, y2);
-	ctx.lineTo(x3, y3);
+	this.drawTriangle = function draw() {
+		ctx.fillStyle = this.Color;
+		ctx.beginPath();
+	
+		ctx.moveTo(this.X1, this.Y1);
+		ctx.lineTo(this.X2, this.Y2);
+		ctx.lineTo(this.X3, this.Y3);
+	
+		ctx.closePath();
+		ctx.fill();
+	}
 
-	ctx.closePath();
-	ctx.fill();
+	this.fallDown = function fallDown() {
+		console.log(this);
+		timer = setInterval( function() { drop(this) }, 40);
+	}
+}
+
+function drop(triangle) {
+	if (triangle != undefined) {
+		triangle.Color = "#000000";
+		triangle.drawTriangle();
+	};
+
+	if (true) {
+		clearInterval(timer);
+	};
 }
 
 function highlight() {
