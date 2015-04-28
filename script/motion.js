@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function(){ init(); });
 
-var radius = 1, ctx, width = window.innerWidth, height = window.innerHeight, lines = [];
+var radius = 1, ctx, width = window.innerWidth, height = window.innerHeight, lines = [], triangles = [], colors = ["#F25EA3", "#5DF489", "#39A8D9", "#F1F892", "#FB6E46"];
 
 function init() {
 	ctx = setCanvas(document.getElementById("drawing_board"));
@@ -47,7 +47,8 @@ function shrinkBack() {
 
 	if (radius <= 100) {
 		clearInterval(tmr);
-		highlight();
+		// highlight();
+		drawTriangles();
 	};
 }
 
@@ -58,6 +59,31 @@ function drawOutlineCircle(r, c, w) {
 	ctx.lineWidth = w;
     ctx.strokeStyle = c;
 	ctx.stroke();
+}
+
+function drawTriangles() {
+	var a = width / 30;
+	var b = height / 20;
+
+	var i, j;
+	for (i = 0; i <= width - a; i += a) {
+		for (j = 0; j <= height - b; j += b) {
+			triangles.push(new triangle( i, j, i + a, j + b, i + a, j, colors[Math.floor(Math.random() * 4)]));
+			console.log(triangles);
+		};
+	};
+}
+
+function triangle(x1, y1, x2, y2, x3, y3, color) {
+	ctx.fillStyle = color;
+	ctx.beginPath();
+
+	ctx.moveTo(x1, y1);
+	ctx.lineTo(x2, y2);
+	ctx.lineTo(x3, y3);
+
+	ctx.closePath();
+	ctx.fill();
 }
 
 function highlight() {
