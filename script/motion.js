@@ -1,6 +1,6 @@
 document.addEventListener("DOMContentLoaded", function(){ init(); });
 
-var radius = 1, ctx, width = window.innerWidth, height = window.innerHeight, lines = [], triangles = [], colors = ["#F25EA3", "#5DF489", "#39A8D9", "#F1F892", "#FB6E46"];
+var radius = 1, count = 0, ctx, width = window.innerWidth, height = window.innerHeight, lines = [], triangles = [], colors = ["#F25EA3", "#5DF489", "#39A8D9", "#F1F892", "#FB6E46"];
 
 function init() {
 	ctx = setCanvas(document.getElementById("drawing_board"));
@@ -70,13 +70,20 @@ function drawTriangles() {
 		for (j = 0; j <= height - b; j += b) {
 			var t = new triangle( i, j, i + a, j + b, i + a, j, colors[Math.floor(Math.random() * 5)]);
 			triangles.push(t);
-			t.drawTriangle();
 		};
 	};
-	triangles[2].fallDown();
-	triangles[3].fallDown();
-	triangles[4].fallDown();
-	triangles[5].fallDown();
+	timer = setInterval( function() { drawAnother(); }, 10);
+}
+
+function drawAnother() {
+	triangles[count].drawTriangle();
+
+	count++;
+	console.log(count);
+	if (count >= triangles.length) {
+		clearInterval(timer);
+	};
+
 }
 
 function triangle(x1, y1, x2, y2, x3, y3, color) {
@@ -109,14 +116,14 @@ function triangle(x1, y1, x2, y2, x3, y3, color) {
 }
 
 function drop(triangle) {
-	if (triangle != undefined) {
-		triangle.Color = "#000000";
-		triangle.drawTriangle();
-	};
+	// if (triangle != undefined) {
+	// 	triangle.Color = "#000000";
+	// 	triangle.drawTriangle();
+	// };
 
-	if (true) {
-		clearInterval(timer);
-	};
+	// if (true) {
+	// 	clearInterval(timer);
+	// };
 }
 
 function highlight() {
