@@ -72,7 +72,7 @@ function drawTriangles() {
 			triangles.push(t);
 		};
 	};
-	timer = setInterval( function() { drawAnother(); }, 10);
+	timer = setInterval( function() { drawAnother(); }, 5);
 }
 
 function drawAnother() {
