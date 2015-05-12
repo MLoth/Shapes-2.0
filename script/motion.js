@@ -47,7 +47,6 @@ function shrinkBack() {
 
 	if (radius <= 100) {
 		clearInterval(tmr);
-		// highlight();
 		drawTriangles();
 	};
 }
@@ -123,23 +122,5 @@ function drop(triangle) {
 
 	// if (true) {
 	// 	clearInterval(timer);
-	// };
-}
-
-function highlight() {
-	// make ovals, not ok yet
-	// ctx.translate(width / 2, height / 2);
-	// ctx.scale(2, 1);
-	// ctx.restore;
-
-	// for (var i = 0, j = lines.length; i <= j; i++) {
-	// 	if (i != lines[i]) {
-	// 		drawOutlineCircle(lines[i], "#E80CB2", 3);
-	// 	};
-	// };
-	// clearTimeout(tmr);
-
-	// for (var i = lines.length - 1; i >= 0; i--) {
-	// 	drawOutline(lines[i], "#FFFFFF", 1);
 	// };
 }
